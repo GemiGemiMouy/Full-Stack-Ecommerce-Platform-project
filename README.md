@@ -25,8 +25,7 @@ Full-stack e-commerce application with **client-side shopping** and **admin pane
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/ecommerce-project.git
-
+git clone https://github.com/GemiGemiMouy/Ecommerce_Project
 # Client
 cd ecommerce-project/client
 npm install
