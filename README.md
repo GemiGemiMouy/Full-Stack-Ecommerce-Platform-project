@@ -6,26 +6,29 @@ Full-stack e-commerce application with **client-side shopping** and **admin pane
 
 ### Client Side
 - Homepage with hero section and featured products
-- Product categories and search/filter
+- Product categories with search and filter
 - Wishlist and My Orders pages
 - Add to Cart functionality
+- Responsive design
 
 ### Admin Panel
-- Dashboard with statistics and analytics
-- Manage Products and Categories
-- Orders table with search and status filters
+- Dashboard with statistics (total orders, revenue, order status)
+- Orders table with search, status filter, and pagination
+- Manage products and categories
 - Admin settings and user management
+- Analytics charts (orders by status, revenue over time)
 
 ## Tech Stack
-- Frontend: React.js, Tailwind CSS
-- Backend: (Optional: Firebase / Node.js / API)
-- Version Control: Git & GitHub
+- **Frontend**: React.js, Tailwind CSS
+- **Backend**: Optional Firebase / Node.js / API
+- **Version Control**: Git & GitHub
 
 ## Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/GemiGemiMouy/Ecommerce_Project
+git clone https://github.com/YOUR_USERNAME/ecommerce-project.git
+
 # Client
 cd ecommerce-project/client
 npm install
