@@ -1,12 +1,38 @@
-# React + Vite
+# E-Commerce Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Full-stack e-commerce application with **client-side shopping** and **admin panel management**, built with **React** and **Tailwind CSS**.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Client Side
+- Homepage with hero section and featured products
+- Product categories and search/filter
+- Wishlist and My Orders pages
+- Add to Cart functionality
 
-## Expanding the ESLint configuration
+### Admin Panel
+- Dashboard with statistics and analytics
+- Manage Products and Categories
+- Orders table with search and status filters
+- Admin settings and user management
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+- Frontend: React.js, Tailwind CSS
+- Backend: (Optional: Firebase / Node.js / API)
+- Version Control: Git & GitHub
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/ecommerce-project.git
+
+# Client
+cd ecommerce-project/client
+npm install
+npm start
+
+# Admin
+cd ../admin
+npm install
+npm start
