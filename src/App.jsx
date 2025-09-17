@@ -31,12 +31,33 @@ import AdminNotifications from "./pages/admin/AdminNotifications";
 export default function App({ darkMode, toggleDarkMode }) {
   const [cartItems, setCartItems] = useState([]);
 
-  const handleAddToCart = (product) => {
-    setCartItems((prevItems) => [...prevItems, product]);
+  const handleAddToCart = (product, quantity = 1) => {
+    setCartItems((prevItems) => {
+      // Check if product already exists in cart
+      const existingItemIndex = prevItems.findIndex(item => item.id === product.id);
+      
+      if (existingItemIndex > -1) {
+        // Update quantity if item exists
+        const updatedItems = [...prevItems];
+        updatedItems[existingItemIndex].quantity += quantity;
+        return updatedItems;
+      } else {
+        // Add new item with quantity
+        return [...prevItems, { ...product, quantity }];
+      }
+    });
   };
 
   const handleRemoveFromCart = (index) => {
     setCartItems((prevItems) => prevItems.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateQuantity = (index, newQuantity) => {
+    setCartItems((prevItems) => {
+      const updatedItems = [...prevItems];
+      updatedItems[index].quantity = newQuantity;
+      return updatedItems;
+    });
   };
 
   return (
@@ -59,7 +80,11 @@ export default function App({ darkMode, toggleDarkMode }) {
         <Route
           path="/cart"
           element={
-            <Cart cart={cartItems} onRemoveFromCart={handleRemoveFromCart} />
+            <Cart 
+              cart={cartItems} 
+              onRemoveFromCart={handleRemoveFromCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
           }
         />
         <Route path="/checkout" element={<Checkout cart={cartItems} />} />

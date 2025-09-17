@@ -155,10 +155,8 @@ export default function ProductDetails({ onAddToCart }) {
       setAddingToCart(true);
       
       if (onAddToCart) {
-        // Use the parent's add to cart function
-        for (let i = 0; i < quantity; i++) {
-          onAddToCart(product);
-        }
+        // Use the parent's add to cart function with quantity
+        onAddToCart(product, quantity);
         setSuccessMessage(`${quantity} item(s) added to cart!`);
       } else {
         // Fallback to direct Firebase cart
