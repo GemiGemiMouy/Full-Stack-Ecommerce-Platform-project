@@ -332,15 +332,26 @@ export default function NavbarClient({ cartItems = [] }) {
                 </AnimatePresence>
             </div>
             ) : (
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link 
-                  to="/login" 
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
-                >
-                  <span className="hidden sm:inline">Login</span>
-                  <span className="sm:hidden">Sign In</span>
-                </Link>
-              </motion.div>
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link 
+                    to="/register" 
+                    className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 text-sm sm:text-base"
+                  >
+                    <span className="hidden sm:inline">Register</span>
+                    <span className="sm:hidden">Sign Up</span>
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link 
+                    to="/login" 
+                    className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+                  >
+                    <span className="hidden sm:inline">Login</span>
+                    <span className="sm:hidden">Sign In</span>
+                  </Link>
+                </motion.div>
+              </div>
             )}
 
             {/* Dark Mode Toggle */}
@@ -589,6 +600,14 @@ export default function NavbarClient({ cartItems = [] }) {
                     </button>
                 </>
               ) : (
+                <div className="space-y-3">
+                  <Link 
+                    to="/register" 
+                    onClick={() => setMenuOpen(false)}
+                    className="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-6 py-4 rounded-xl font-semibold text-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300"
+                  >
+                    Create Account
+                  </Link>
                   <Link 
                     to="/login" 
                     onClick={() => setMenuOpen(false)}
@@ -596,6 +615,7 @@ export default function NavbarClient({ cartItems = [] }) {
                   >
                     Login
                   </Link>
+                </div>
                 )}
 
                 {/* Dark Mode Toggle */}
