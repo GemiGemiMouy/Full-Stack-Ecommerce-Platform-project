@@ -336,16 +336,16 @@ export default function NavbarClient({ cartItems = [] }) {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link 
                     to="/register" 
-                    className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 text-sm sm:text-base"
+                    className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-full font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
                   >
-                    <span className="hidden sm:inline">Register</span>
+                    <span className="hidden sm:inline">Sign Up</span>
                     <span className="sm:hidden">Sign Up</span>
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link 
                     to="/login" 
-                    className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+                    className="bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 px-3 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-300 border border-indigo-200 dark:border-indigo-700 text-sm sm:text-base"
                   >
                     <span className="hidden sm:inline">Login</span>
                     <span className="sm:hidden">Sign In</span>
@@ -604,14 +604,14 @@ export default function NavbarClient({ cartItems = [] }) {
                   <Link 
                     to="/register" 
                     onClick={() => setMenuOpen(false)}
-                    className="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-6 py-4 rounded-xl font-semibold text-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 rounded-xl font-semibold text-center hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
                     Create Account
                   </Link>
                   <Link 
                     to="/login" 
                     onClick={() => setMenuOpen(false)}
-                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 rounded-xl font-semibold text-center hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    className="w-full bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 px-6 py-4 rounded-xl font-semibold text-center hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-300 border border-indigo-200 dark:border-indigo-700"
                   >
                     Login
                   </Link>

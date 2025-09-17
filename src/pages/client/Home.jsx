@@ -171,14 +171,29 @@ export default function Home({ onAddToCart }) {
   <div className="flex flex-wrap gap-4 justify-center md:justify-start max-w-max mx-auto md:mx-0">
     <Link
       to="/products"
-      className="inline-block bg-indigo-600 text-white px-8 py-4 rounded-md font-semibold hover:bg-indigo-700 transition text-center"
+      className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
     >
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
       Shop Now
     </Link>
 
+    {!user && (
+      <Link
+        to="/register"
+        className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 px-8 py-4 rounded-xl font-semibold hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-300 border-2 border-indigo-200 dark:border-indigo-700 hover:border-indigo-300 dark:hover:border-indigo-600 transform hover:scale-105 text-center"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+        </svg>
+        Join Now - Free
+      </Link>
+    )}
+
     <Link
       to="/about"
-      className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white transition"
+      className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/50"
     >
       Learn More
       <svg
@@ -421,6 +436,65 @@ export default function Home({ onAddToCart }) {
           )}
         </div>
       </section>
+
+      {/* Sign Up Call-to-Action Section - Only for non-logged-in users */}
+      {!user && (
+        <section className="py-16 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+                Ready to Start Shopping?
+              </h2>
+              <p className="text-lg mb-8 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+                Join thousands of fashion enthusiasts and get access to exclusive deals, 
+                personalized recommendations, and a seamless shopping experience.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link
+                  to="/register"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                  </svg>
+                  Create Free Account
+                </Link>
+                <Link
+                  to="/login"
+                  className="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors duration-300"
+                >
+                  Already have an account? Sign in
+                </Link>
+              </div>
+              <div className="mt-8 flex justify-center items-center space-x-8 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <span>Free to join</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <span>Exclusive deals</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <span>Fast checkout</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Newsletter Signup Section */}
       <section className="py-16 bg-white dark:bg-gray-900">
