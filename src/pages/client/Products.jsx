@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import { db, auth } from "../../firebase/config";
+import { onAuthStateChanged } from "firebase/auth";
 import ProductCard from "../../components/ProductCard";
 import Footer from "../../components/Footer";
+import ModernDropdown from "../../components/ModernDropdown";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { ArrowUpDown, Filter } from "lucide-react";
 
 export default function Products({ onAddToCart }) {
   const [products, setProducts] = useState([]);
@@ -13,7 +16,17 @@ export default function Products({ onAddToCart }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortOrder, setSortOrder] = useState("asc");
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  // Listen to authentication state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -98,14 +111,18 @@ export default function Products({ onAddToCart }) {
             ))}
           </div>
 
-          <select
+          <ModernDropdown
             value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-            className="p-2 border rounded-md dark:bg-gray-800 dark:text-white"
-          >
-            <option value="asc">Price: Low to High</option>
-            <option value="desc">Price: High to Low</option>
-          </select>
+            onChange={setSortOrder}
+            placeholder="Sort by price"
+            icon={ArrowUpDown}
+            variant="sort"
+            className="min-w-[200px]"
+            options={[
+              { value: "asc", label: "Price: Low to High" },
+              { value: "desc", label: "Price: High to Low" }
+            ]}
+          />
         </div>
 
         {/* Product Grid */}
@@ -145,6 +162,7 @@ export default function Products({ onAddToCart }) {
                   product={product}
                   onAddToCart={() => handleAddToCartAndRedirect(product)}
                   isNew={isNewProduct(product.createdAt)}
+                  userId={user?.uid}
                 />
               </motion.div>
             ))}

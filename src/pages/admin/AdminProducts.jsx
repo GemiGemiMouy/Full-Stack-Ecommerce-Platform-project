@@ -8,6 +8,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import ModernDropdown from "../../components/ModernDropdown";
+import { Filter, ArrowUpDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function AdminProducts() {
@@ -208,46 +210,37 @@ export default function AdminProducts() {
       </section>
 
       {/* Filter and Sort Section */}
-      <section className="max-w-6xl mx-auto mb-6 flex flex-wrap gap-4 items-center">
-        <div>
-          <label
-            htmlFor="filterCategory"
-            className="text-gray-700 dark:text-gray-300 font-semibold mr-2"
-          >
-            Filter by Category:
-          </label>
-          <select
-            id="filterCategory"
-            value={filterCategory}
-            onChange={(e) => setFilterCategory(e.target.value)}
-            className="rounded p-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-          >
-            <option value="">All Categories</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
+      <section className="max-w-6xl mx-auto mb-6 flex flex-wrap gap-6 items-center">
+        <ModernDropdown
+          value={filterCategory}
+          onChange={setFilterCategory}
+          placeholder="All Categories"
+          label="Filter by Category"
+          icon={Filter}
+          variant="filter"
+          className="min-w-[200px]"
+          options={[
+            { value: "", label: "All Categories" },
+            ...categories.map((cat) => ({
+              value: cat,
+              label: cat
+            }))
+          ]}
+        />
 
-        <div>
-          <label
-            htmlFor="sort"
-            className="text-gray-700 dark:text-gray-300 font-semibold mr-2"
-          >
-            Sort by:
-          </label>
-          <select
-            id="sort"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="rounded p-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-          >
-            <option value="name">Name (A-Z)</option>
-            <option value="price">Price (Low to High)</option>
-          </select>
-        </div>
+        <ModernDropdown
+          value={sortBy}
+          onChange={setSortBy}
+          placeholder="Sort by"
+          label="Sort by"
+          icon={ArrowUpDown}
+          variant="sort"
+          className="min-w-[200px]"
+          options={[
+            { value: "name", label: "Name (A-Z)" },
+            { value: "price", label: "Price (Low to High)" }
+          ]}
+        />
       </section>
 
       {/* Product List Section */}

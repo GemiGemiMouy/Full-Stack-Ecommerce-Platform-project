@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import { db, auth } from "../../firebase/config";
+import { onAuthStateChanged } from "firebase/auth";
 import ProductCard from "../../components/ProductCard";
 import Footer from "../../components/Footer";
+import ModernDropdown from "../../components/ModernDropdown";
 import { Link } from "react-router-dom";
 import {
   Truck,
@@ -11,6 +13,7 @@ import {
   Sun,
   Moon,
   ChevronUp,
+  ArrowUpDown,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -31,6 +34,16 @@ export default function Home({ onAddToCart }) {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [email, setEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState(null); // null | "success" | "error"
+  const [user, setUser] = useState(null);
+
+  // Listen to authentication state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   // Fetch products & categories from Firebase
   useEffect(() => {
@@ -235,14 +248,18 @@ export default function Home({ onAddToCart }) {
 
 
     {/* Sort Dropdown */}
-    <select
+    <ModernDropdown
       value={sortOrder}
-            onChange={e => setSortOrder(e.target.value)}
-            className="p-2 border rounded-md dark:bg-gray-800 dark:text-white"
-            aria-label="Sort products by price" >
-      <option value="asc">Price: Low to High</option>
-      <option value="desc">Price: High to Low</option>
-    </select>
+      onChange={setSortOrder}
+      placeholder="Sort by price"
+      icon={ArrowUpDown}
+      variant="sort"
+      className="min-w-[200px]"
+      options={[
+        { value: "asc", label: "Price: Low to High" },
+        { value: "desc", label: "Price: High to Low" }
+      ]}
+    />
   </div>
 
   {/* Featured Heading */}
@@ -292,6 +309,7 @@ export default function Home({ onAddToCart }) {
           <ProductCard
             product={product}
             onAddToCart={() => handleAddToCart(product)}
+            userId={user?.uid}
           />
         </motion.div>
       ))}
@@ -457,9 +475,7 @@ export default function Home({ onAddToCart }) {
         <ChevronUp size={28} />
       </button>
 
-      <footer className=" dark:bg-gray-800 px-6 py-8 mt-12 w-full">
-             <Footer />
-           </footer>
+      <Footer />
     </>
   );
 }

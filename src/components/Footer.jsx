@@ -1,101 +1,98 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { 
+  Mail, 
+  Phone, 
+  MapPin,
+  Sparkles
+} from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 pt-16 pb-10 px-6 md:px-20 border-t border-gray-200 dark:border-gray-700 select-none transition-colors duration-300">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+    <footer className="bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 border-t border-gray-200 dark:border-gray-700 select-none transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          {/* Brand */}
+          <div className="space-y-4">
+            <Link
+              to="/"
+              className="flex items-center space-x-2 text-indigo-600 dark:text-white font-extrabold text-2xl tracking-tight select-none"
+            >
+              <Sparkles className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+              <span>ModaioFashion</span>
+            </Link>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
+              Elevate your style with curated fashion trends. Confidence starts here.
+            </p>
+          </div>
 
-        {/* Brand */}
-        <div className="space-y-4">
-         <Link
-          to="/"
-          className="text-indigo-600 dark:text-white font-extrabold text-3xl tracking-tight select-none"
-        >
-          ModaioFashion
-        </Link>
-          <p className="text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed">
-            Elevate your style with curated fashion trends. Confidence starts here.
-          </p>
-        </div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { href: "/", label: "Home" },
+                { href: "/products", label: "Shop" },
+                { href: "/about", label: "About" },
+                { href: "#", label: "Contact" },
+              ].map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    to={href}
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Explore */}
-        <div>
-          <h3 className="text-lg font-semibold mb-6 uppercase tracking-wide text-gray-900 dark:text-gray-100">
-            Explore
-          </h3>
-          <ul className="space-y-4 text-sm font-medium">
-            {[
-              { href: "/", label: "Home" },
-              { href: "/products", label: "Shop" },
-              { href: "/about", label: "About Us" },
-              { href: "/contact", label: "Contact" },
-            ].map(({ href, label }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="relative group inline-block text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                >
-                  {label}
-                  <span
-                    className="absolute left-0 -bottom-1 w-0 h-0.5 bg-indigo-600 dark:bg-indigo-400 transition-all group-hover:w-full"
-                    aria-hidden="true"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Customer Care */}
-        <div>
-          <h3 className="text-lg font-semibold mb-6 uppercase tracking-wide text-gray-900 dark:text-gray-100">
-            Customer Care
-          </h3>
-          <ul className="space-y-4 text-sm font-medium">
-            {[
-              { href: "#", label: "FAQs" },
-              { href: "#", label: "Returns & Exchanges" },
-              { href: "#", label: "Privacy Policy" },
-              { href: "#", label: "Terms & Conditions" },
-            ].map(({ href, label }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  className="relative group inline-block text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                >
-                  {label}
-                  <span
-                    className="absolute left-0 -bottom-1 w-0 h-0.5 bg-indigo-600 dark:bg-indigo-400 transition-all group-hover:w-full"
-                    aria-hidden="true"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Social */}
-        <div>
-          <h3 className="text-lg font-semibold mb-6 uppercase tracking-wide text-gray-900 dark:text-gray-100">
-            Follow Us
-          </h3>
-          <div className="flex space-x-6 text-indigo-600 dark:text-gray-200">
-            <SocialLinkFacebook />
-            <SocialLinkInstagram />
-            <SocialLinkYoutube />
+          {/* Contact */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+              Contact
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 text-sm">
+                <Mail className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <span className="text-gray-600 dark:text-gray-400">support@modaiofashion.com</span>
+              </div>
+              <div className="flex items-center space-x-3 text-sm">
+                <Phone className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <span className="text-gray-600 dark:text-gray-400">+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-3 text-sm">
+                <MapPin className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <span className="text-gray-600 dark:text-gray-400">123 Fashion Street</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-14 border-t border-gray-200 dark:border-gray-700 pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-        © {new Date().getFullYear()} ModaioFashion. All rights reserved.
+        {/* Bottom Bar */}
+        <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              © {new Date().getFullYear()} ModaioFashion. All rights reserved.
+            </div>
+            <div className="flex space-x-6">
+              <SocialLinkFacebook />
+              <SocialLinkInstagram />
+              <SocialLinkYoutube />
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );
 }
 
-// Modern minimalist Facebook icon
+// Simple Social Media Icons
 function SocialLinkFacebook() {
   return (
     <a
@@ -103,25 +100,15 @@ function SocialLinkFacebook() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Facebook"
-      className="hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+      className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-colors duration-300"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-7 h-7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        viewBox="0 0 24 24"
-      >
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
       </svg>
     </a>
   );
 }
 
-// Modern minimalist Instagram icon
 function SocialLinkInstagram() {
   return (
     <a
@@ -129,27 +116,15 @@ function SocialLinkInstagram() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Instagram"
-      className="hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+      className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition-colors duration-300"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-7 h-7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        viewBox="0 0 24 24"
-      >
-        <rect x={2} y={2} width={20} height={20} rx={5} ry={5} />
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-        <line x1={17.5} y1={6.5} x2={17.5} y2={6.5} />
+      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281c-.49 0-.98-.49-.98-.98s.49-.98.98-.98.98.49.98.98-.49.98-.98.98z"/>
       </svg>
     </a>
   );
 }
 
-// Modern minimalist YouTube icon
 function SocialLinkYoutube() {
   return (
     <a
@@ -157,20 +132,10 @@ function SocialLinkYoutube() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="YouTube"
-      className="hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+      className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-red-600 hover:text-white transition-colors duration-300"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-7 h-7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        viewBox="0 0 24 24"
-      >
-        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47a2.78 2.78 0 0 0-1.95 1.95A29.56 29.56 0 0 0 1 12a29.56 29.56 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95c1.71.47 8.59.47 8.59.47s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29.56 29.56 0 0 0 23 12a29.56 29.56 0 0 0-.46-5.58z" />
-        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
       </svg>
     </a>
   );

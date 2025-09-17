@@ -39,7 +39,7 @@ export default function ProductCard({ product, onAddToCart, isNew, userId }) {
       } else {
         await addToWishlist(userId, product);
         setFavorited(true);
-        navigate("/wishlist");
+        // Don't navigate to wishlist automatically - let user decide
       }
     } catch (error) {
       alert("Failed to update wishlist.");
